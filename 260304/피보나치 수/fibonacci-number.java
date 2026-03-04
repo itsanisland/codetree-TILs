@@ -4,11 +4,11 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         
-        int[] dp = new int[n + 1];
+        int[] dp = new int[n + 2];
         dp[1] = dp[2] = 1;
 
         for (int i = 3; i <= n; i++) {
-            dp[n] = dp[n - 1] + dp[n - 2];
+            dp[i] = dp[i - 1] + dp[i - 2];
         }
 
         System.out.println(dp[n]);
