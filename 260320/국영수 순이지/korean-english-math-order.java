@@ -16,6 +16,7 @@ class Person {
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
         
         int n = Integer.parseInt(br.readLine());
         Person[] arr = new Person[n];
@@ -36,7 +37,9 @@ public class Main {
         });
 
         for (int i = 0; i < n; i++) {
-            System.out.println(arr[i].name + " " + arr[i].k + " " + arr[i].e + " " + arr[i].m);
+            sb.append(arr[i].name + " " + arr[i].k + " " + arr[i].e + " " + arr[i].m).append("\n");
         }
+
+        System.out.println(sb);
     }
 }
