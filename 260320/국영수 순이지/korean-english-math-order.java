@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Main {
 
-    static class Person {
+    static class Person implements Comparable<Person> {
         String name;
         int k, e, m;
 
@@ -17,6 +17,12 @@ public class Main {
         public String toString() {
             return name + " " + k + " " + e + " " + m + "\n";
         }
+
+        public int compareTo(Person o) {
+			if (this.k != o.k) return o.k - this.k;
+			if (this.e != o.e) return o.e - this.e;
+			return o.m - this.m;
+		}
     }
 
     public static void main(String[] args) throws IOException {
@@ -35,11 +41,7 @@ public class Main {
             arr[i] = new Person(name, k, e, m);
         }
         
-        Arrays.sort(arr, (a , b) -> {
-            if (a.k != b.k) return b.k - a.k;
-            else if (a.e != b.e) return b.e - a.e;
-            else return b.m - a.m;
-        });
+        Arrays.sort(arr);
 
         for (int i = 0; i < n; i++) {
             sb.append(arr[i]);
