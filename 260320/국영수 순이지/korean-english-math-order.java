@@ -1,53 +1,50 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 
 public class Main {
-	static class Score implements Comparable<Score>{
-		String name;
-		int korean;
-		int english;
-		int math;
-		public Score(String name, int korean, int english, int math) {
-			super();
-			this.name = name;
-			this.korean = korean;
-			this.english = english;
-			this.math = math;
-		}
-		
-		public String toString() {
-			return name + " " + korean + " " + english + " " + math + "\n";
-		}
 
-		public int compareTo(Score o) {
-			if (this.korean != o.korean) return o.korean - this.korean;
-			if (this.english != o.english) return o.english - this.english;
-			return o.math - this.math;
-		}
-	}
-	public static void main(String[] args) throws IOException{
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringBuilder sb = new StringBuilder();
-		StringTokenizer st = null;
-		int n = Integer.parseInt(br.readLine());
-		Score[] sList = new Score[n];
-		for (int i = 0; i < n; i++) {
-			st = new StringTokenizer(br.readLine());
-			String name = st.nextToken();
-			int k = Integer.parseInt(st.nextToken());
-			int e = Integer.parseInt(st.nextToken());
-			int m = Integer.parseInt(st.nextToken());
-			sList[i] = new Score(name, k, e, m);
-		}
-		Arrays.sort(sList);
-		
-		for (Score score : sList) {
-			sb.append(score);
-		}
-		System.out.println(sb);
-	}
+    static class Person {
+        String name;
+        int k, e, m;
+
+        Person(String name, int k, int e, int m) {
+            this.name = name;
+            this.k = k;
+            this.e = e;
+            this.m = m;
+        }
+
+        public String toString() {
+            return name + " " + k + " " + e + " " + m + "\n";
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        
+        int n = Integer.parseInt(br.readLine());
+        Person[] arr = new Person[n];
+
+        for (int i = 0; i < n; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            String name = st.nextToken();
+            int k = Integer.parseInt(st.nextToken());
+            int e = Integer.parseInt(st.nextToken());
+            int m = Integer.parseInt(st.nextToken());
+            arr[i] = new Person(name, k, e, m);
+        }
+        
+        Arrays.sort(arr, (a , b) -> {
+            if (a.k != b.k) return b.k - a.k;
+            else if (a.e != b.e) return b.e - a.e;
+            else return b.m - a.m;
+        });
+
+        for (int i = 0; i < n; i++) {
+            sb.append(arr[i]);
+        }
+
+        System.out.println(sb);
+    }
 }
-
