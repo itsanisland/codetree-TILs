@@ -11,6 +11,10 @@ class Person {
         this.e = e;
         this.m = m;
     }
+
+    public String toString() {
+        return name + " " + k + " " + e + " " + m + "\n";
+    }
 }
 
 public class Main {
@@ -37,7 +41,7 @@ public class Main {
         });
 
         for (int i = 0; i < n; i++) {
-            sb.append(arr[i].name + " " + arr[i].k + " " + arr[i].e + " " + arr[i].m).append("\n");
+            sb.append(arr[i]);
         }
 
         System.out.println(sb);
