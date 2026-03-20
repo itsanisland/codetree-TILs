@@ -13,10 +13,10 @@ public class Main {
 
             switch (cmd) {
                 case "add": // +
-                    s += (1 << x);
+                    if (((s >> x) & 1) == 0) s += (1 << x);
                     break;
                 case "delete": // -
-                    s -= (1 << x);
+                    if (((s >> x) & 1) == 1) s -= (1 << x);
                     break;
                 case "print": // AND
                     sb.append((s >> x) & 1).append("\n");
