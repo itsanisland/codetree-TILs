@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Main {
     private static final int[] NUM_OF_DAYS = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-    private static final String[] DAY_OF_MONTH = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
+    private static final String[] DAY_OF_WEEK = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -13,18 +13,15 @@ public class Main {
         int m2 = Integer.parseInt(st.nextToken());
         int d2 = Integer.parseInt(st.nextToken());
 
-        int dayOfMonth = 0; // 월요일
         int diff = convertToDays(m2, d2) - convertToDays(m1, d1);
+        diff %= 7;
 
         if (diff < 0) {
-            diff = convertToDays(m1, d1) - convertToDays(m2, d2);
-            diff %= 7;
-            dayOfMonth = (7 - diff) % 7;
-        } else {
-            diff %= 7;
-            dayOfMonth += diff;
+            // 음수인 경우, 양수로 넘겨 계산
+            diff += 7;
         }
-        System.out.println(DAY_OF_MONTH[dayOfMonth]);
+
+        System.out.println(DAY_OF_WEEK[diff]);
     }
 
     private static int convertToDays(int m, int d) {
