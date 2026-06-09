@@ -8,13 +8,11 @@ public class Main {
     }
 
     private static void printRect(int n) {
-        int num = 1;
+        int num = 0;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                if (num == 10) {
-                    num = 1;
-                }
-                System.out.print(num++ + " ");
+                num = (num % 9) + 1;
+                System.out.print(num + " ");
             }
             System.out.println();
         }
