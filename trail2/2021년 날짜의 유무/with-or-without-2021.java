@@ -8,14 +8,21 @@ public class Main {
     }
 
     private static String check(int m, int d) {
-        if (m > 12 || d > 31 || (m == 2 && d > 28)) {
-            return "No";
+        if (m <= 12 && d <= getLastDay(m)) {
+            return "Yes";
+        }
+        return "No";
+    }
+
+    private static int getLastDay(int m) {
+        if (m == 2) {
+            return 28;
         }
 
-        if ((m == 4 || m == 6 || m == 9 || m == 11) && d > 30) {
-            return "No";
+        if (m == 4 || m == 6 || m == 9 || m == 11) {
+            return 30;
         }
 
-        return "Yes";
+        return 31;
     }
 }
