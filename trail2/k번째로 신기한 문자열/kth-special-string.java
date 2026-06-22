@@ -14,17 +14,8 @@ public class Main {
         
         for (int i = 0; i < n; i++) {
             String s = br.readLine();
-            if (s.length() < t.length()) continue;
 
-            boolean isPass = true;
-            for (int j = 0; j < t.length(); j++) {
-                if (s.charAt(j) != t.charAt(j)) {
-                    isPass = false;
-                    break;
-                }
-            }
-
-            if (isPass) {
+            if (s.indexOf(t) == 0) {
                 list.add(s);
             }
         }
