@@ -22,18 +22,18 @@ class Spy {
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        List<Spy> list = new ArrayList<>();
+        Spy[] arr = new Spy[5];
 
         for (int i = 0; i < 5; i++) {
             String cName = sc.next();
             int score = sc.nextInt();
-            list.add(new Spy(cName, score));
+            arr[i] = new Spy(cName, score);
         }
 
-        Collections.sort(list, (a, b) -> {
+        Arrays.sort(arr, (a, b) -> {
             return a.score - b.score;
         });
 
-        list.get(0).print();
+        arr[0].print();
     }
 }
