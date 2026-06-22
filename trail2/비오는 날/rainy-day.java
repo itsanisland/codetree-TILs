@@ -1,15 +1,15 @@
 import java.util.*;
 
-class Weather {
+class Forecast {
     String date, dayOfWeek, status;
 
-    Weather() {
-        this.date = "";
+    Forecast() {
+        this.date = "9999-99-99";
         this.dayOfWeek = "";
         this.status = "";
     }
 
-    Weather(String date, String dayOfWeek, String status) {
+    Forecast(String date, String dayOfWeek, String status) {
         this.date = date;
         this.dayOfWeek = dayOfWeek;
         this.status = status;
@@ -25,19 +25,21 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         int n = sc.nextInt();
-        List<Weather> list = new ArrayList<>();
+        Forecast ans = new Forecast();
 
         for (int i = 0; i < n; i++) {
             String date = sc.next();
             String dayOfWeek = sc.next();
             String status = sc.next();
+            Forecast f = new Forecast(date, dayOfWeek, status);
+
             if (status.equals("Rain")) {
-                list.add(new Weather(date, dayOfWeek, status));
+                if (f.date.compareTo(ans.date) < 0) {
+                    ans = f;
+                } 
             }
         }
 
-        Collections.sort(list, (a, b) -> a.date.compareTo(b.date));
-
-        list.get(0).print();
+        ans.print();
     }
 }
