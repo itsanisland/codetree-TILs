@@ -25,10 +25,19 @@ public class Main {
             arr[i].rank = i + 1;
         }
 
-        Arrays.sort(arr, (a, b) -> a.idx - b.idx);
+        // Arrays.sort(arr, (a, b) -> a.idx - b.idx);
+
+        // for (int i = 0; i < n; i++) {
+        //     System.out.print(arr[i].rank + " ");
+        // }
+
+        int[] ranks = new int[n];
+        for (int i = 0; i < n; i++) {
+            ranks[arr[i].idx] = i + 1;
+        }
 
         for (int i = 0; i < n; i++) {
-            System.out.print(arr[i].rank + " ");
+            System.out.print(ranks[i] + " ");
         }
     }
 }
