@@ -7,7 +7,7 @@ public class Main {
 
     private static int[] white = new int[MAX_R + 1];
     private static int[] black = new int[MAX_R + 1];
-    private static int[] checked = new int[MAX_R + 1];
+    private static int[] color = new int[MAX_R + 1];
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -22,27 +22,23 @@ public class Main {
             char cmd = st.nextToken().charAt(0);
             
             if (cmd == 'R') {
-                for (int j = cur; j < cur + x; j++) {
-                    if (checked[j] < 3) {
-                        checked[j] = 2;
-                        black[j]++;
-                        if (white[j] >= 2 && black[j] >= 2) {
-                            checked[j] = 3;
-                        }
+                // x칸 오른쪽으로 칠하기
+                while (x-- > 0) {
+                    color[cur] = 2;
+                    black[cur]++;
+                    if (x > 0) { // 현재 위치 포함 x칸
+                        cur++;
                     }
                 }
-                cur += x - 1;
             } else {
-                for (int j = cur; j > cur - x; j--) {
-                    if (checked[j] < 3) {
-                        checked[j] = 1;
-                        white[j]++;
-                        if (white[j] >= 2 && black[j] >= 2) {
-                            checked[j] = 3;
-                        }
+                // x칸 왼쪽으로 칠하기
+                while (x-- > 0) {
+                    color[cur] = 1;
+                    white[cur]++;
+                    if (x > 0) { // 현재 위치 포함 x칸
+                        cur--;
                     }
                 }
-                cur -= x - 1;
             }
         }
 
@@ -51,11 +47,11 @@ public class Main {
         int grayCnt = 0;
 
         for (int i = 0; i <= MAX_R; i++) {
-            if (checked[i] == 3) {
+            if (black[i] >= 2 && white[i] >= 2) {
                 grayCnt++;
-            } else if (checked[i] == 2) {
+            } else if (color[i] == 2) {
                 blackCnt++;
-            } else if (checked[i] == 1) {
+            } else if (color[i] == 1) {
                 whiteCnt++;
             }
         }
