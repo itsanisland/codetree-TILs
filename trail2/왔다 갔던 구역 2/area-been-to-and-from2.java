@@ -47,7 +47,7 @@ public class Main {
         }
 
         int ans = 0;
-        for (int i = 0; i <= 200; i++) {
+        for (int i = 0; i <= MAX_R; i++) {
             if (checked[i] >= 2) {
                 ans++;
             }
