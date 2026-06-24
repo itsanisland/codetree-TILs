@@ -26,19 +26,17 @@ public class Main {
                 while (x-- > 0) {
                     color[cur] = 2;
                     black[cur]++;
-                    if (x > 0) { // 현재 위치 포함 x칸
-                        cur++;
-                    }
+                    cur++;
                 }
+                cur--;
             } else {
                 // x칸 왼쪽으로 칠하기
                 while (x-- > 0) {
                     color[cur] = 1;
                     white[cur]++;
-                    if (x > 0) { // 현재 위치 포함 x칸
-                        cur--;
-                    }
+                    cur--;
                 }
+                cur++;
             }
         }
 
