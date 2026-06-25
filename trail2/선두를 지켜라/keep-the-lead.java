@@ -33,15 +33,19 @@ public class Main {
         }
 
         int ans = 0;
-        boolean isAFront = posA[1] >= posB[1]; // 초기 설정 (카운트 없이)
+        int leader = 0;
 
-        for (int i = 2; i <= cur; i++) { // i=2부터 비교 시작
-            if (isAFront && posA[i] < posB[i]) {
-                isAFront = false;
-                ans++;
-            } else if (!isAFront && posA[i] > posB[i]) {
-                isAFront = true;
-                ans++;
+        for (int i = 1; i <= cur; i++) {
+            if (posA[i] < posB[i]) {
+                if (leader == 1) {
+                    ans++;
+                }
+                leader = 2;
+            } else if (posA[i] > posB[i]) {
+                if (leader == 2) {
+                    ans++;
+                }
+                leader = 1;
             }
         }
 
