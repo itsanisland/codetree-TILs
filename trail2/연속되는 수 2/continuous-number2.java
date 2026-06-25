@@ -11,15 +11,13 @@ public class Main {
         while (n-- > 0) {
             int input = sc.nextInt();
             if (prev == 0 || prev != input) {
-                ans = Math.max(ans, len);
                 len = 1;
             } else {
                 len++;
             }
             prev = input;
+            ans = Math.max(ans, len);
         }
-
-        ans = Math.max(ans, len);
 
         System.out.println(ans);
     }
