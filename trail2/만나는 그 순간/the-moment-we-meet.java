@@ -16,9 +16,6 @@ public class Main {
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
 
-        Arrays.fill(posA, MAX_N * MAX_T + 1);
-        Arrays.fill(posB, MAX_N * MAX_T + 1);
-        
         int cur = 0;
         while (n-- > 0) {
             st = new StringTokenizer(br.readLine());
@@ -56,11 +53,7 @@ public class Main {
         }
 
         int ans = -1;
-        for (int i = 1; i <= MAX_N * MAX_T; i++) {
-            if (posA[i] == MAX_N * MAX_T + 1 && posB[i] == MAX_N * MAX_T + 1) {
-                continue;
-            }
-
+        for (int i = 1; i <= cur; i++) {
             if (posA[i] == posB[i]) {
                 ans = i;
                 break;
