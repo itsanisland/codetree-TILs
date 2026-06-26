@@ -53,16 +53,13 @@ public class Main {
         }
 
         int ans = 0;
-        boolean isSamePos = true;
+
         for (int i = 1; i <= Math.max(curA, curB); i++) {
             posA[i] = i > curA ? posA[curA] : posA[i];
             posB[i] = i > curB ? posB[curB] : posB[i];
-            if (posA[i] == posB[i]) {
-                if (!isSamePos) {
-                    ans++;
-                }
+            if (posA[i] == posB[i] && posA[i - 1] != posB[i - 1]) {
+                ans++;
             }
-            isSamePos = posA[i] == posB[i];
         }
 
         System.out.println(ans);
