@@ -45,24 +45,20 @@ public class Main {
             int x = handShakes[i].x;
             int y = handShakes[i].y;
 
-            if (checked[x] && !checked[y]) {
-                if (count[x] < K) {
-                    checked[y] = true;
-                    count[x]++;
-                }
-            } else if (!checked[x] && checked[y]) {
-                if (count[y] < K) {
-                    checked[x] = true;
-                    count[y]++;
-                }
-            } else if (checked[x] && checked[y]) {
-                if (count[x] < K) {
-                    count[x]++;
-                }
+            if (checked[x]) {
+                count[x]++;
+            }
 
-                if (count[y] < K) {
-                    count[y]++;
-                }
+            if (checked[y]) {
+                count[y]++;
+            }
+
+            if (count[x] <= K && checked[x]) {
+                checked[y] = true;
+            }
+
+            if (count[y] <= K && checked[y]) {
+                checked[x] = true;
             }
         }
 
