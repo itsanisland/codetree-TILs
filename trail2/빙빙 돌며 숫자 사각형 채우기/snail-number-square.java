@@ -22,21 +22,20 @@ public class Main {
 
         int x = 0, y = 0;
         int dir = 0;
-        int seq = 1;
 
-        arr[x][y] = seq++;
+        arr[x][y] = 1;
 
-        while (seq <= n * m) {
+        for (int i = 2; i <= n * m; i++) {
             int nx = x + DX[dir];
             int ny = y + DY[dir];
 
-            if (inRange(nx, ny) && arr[nx][ny] == 0) {
-                arr[nx][ny] = seq++;
-                x = nx;
-                y = ny;
-            } else {
+            if (!inRange(nx, ny) || arr[nx][ny] != 0) {
                 dir = (dir + 1) % 4;
             }
+
+            x += DX[dir];
+            y += DY[dir];
+            arr[x][y] = i;
         }
 
         for (int i = 0; i < n; i++) {
