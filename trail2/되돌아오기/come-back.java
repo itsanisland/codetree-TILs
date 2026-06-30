@@ -9,8 +9,25 @@ public class Main {
     private static final int[] DX = {0, -1, 1, 0};
     private static final int[] DY = {-1, 0, 0, 1};
 
-    private static int n;
+    private static int n, x, y;
+    private static int ans = -1;
+    private static int elapsedTime;
     private static int[] mapper = new int[ASCII_NUM];
+
+    private static boolean move(int dir, int dist) {
+        while (dist-- > 0) {
+            x += DX[dir];
+            y += DY[dir];
+            elapsedTime++;
+
+            if (x == 0 && y == 0) {
+                ans = elapsedTime;
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -22,29 +39,18 @@ public class Main {
         mapper['N'] = 2;
         mapper['E'] = 3;
 
-        int time = 0, ans = 0;
-        int x = 0, y = 0;
-
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
             int dir = mapper[st.nextToken().charAt(0)];
-            int t = Integer.parseInt(st.nextToken());
+            int dist = Integer.parseInt(st.nextToken());
 
-            while (t-- > 0) {
-                x += DX[dir];
-                y += DY[dir];
-                time++;
-                if (x == 0 && y == 0) {
-                    ans = time;
-                    break;
-                }
-            }
-
-            if (ans > 0) {
+            boolean done = move(dir, dist);
+        
+            if (done) {
                 break;
             }
         }
 
-        System.out.println(ans == 0 ? -1 : ans);
+        System.out.println(ans);
     }
 }
